@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:14:30 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/19 18:14:37 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/19 22:29:19 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,8 +216,8 @@ int main(int ac, char *av[])
 {
 	int i;
 	t_list *stack_a;
-	t_list *stack_b = NULL;
-
+	t_list *stack_b;
+	stack_b = NULL;
 	stack_a = NULL;
 	i = 0;
 	
@@ -228,12 +228,10 @@ int main(int ac, char *av[])
 			retatoi(av[i], &stack_a);
 	if (checkdb(stack_a) == 1)
 		return (write(2, "Error\n", 6), 0);
-
-		
 	sort_a_b(&stack_a, &stack_b);
-	
 	sort_b_a(&stack_a, &stack_b);
 
+	system("a.out");
 	
 }
 

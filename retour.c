@@ -55,7 +55,7 @@ void sec_movea(t_list **stack_a, t_list **stack_b, t_list *cheapnode)
 	{
 		rb(stack_b);
 		cheapnode->position--;
-	}			
+	}
 	while (cheapnode->position > ft_lstsize(*stack_b) / 2 && cheapnode->position < ft_lstsize(*stack_b))
 	{
 		rrb(stack_b);
@@ -76,7 +76,9 @@ void sec_movea(t_list **stack_a, t_list **stack_b, t_list *cheapnode)
 void	sort_b_a(t_list **stack_a, t_list **stack_b)
 {
 	t_list *cheapnode;
-	
+	t_list *tmp;
+	tmp = (*stack_a);
+
 	while ((*stack_b))
 	{
 		init_targ(*stack_a, *stack_b);
@@ -86,12 +88,15 @@ void	sort_b_a(t_list **stack_a, t_list **stack_b)
 		|| (cheapnode->position > ft_lstsize(*stack_b) / 2 && cheapnode->tar_index > ft_lstsize(*stack_a) / 2))
 			first_move(stack_b, stack_a, cheapnode);
 		sec_movea(stack_a, stack_b, cheapnode);
-	// printf("---------------------\n");
-		// printf("cheapnode >> %d\n", cheapnode);
-		// printf("content >> %ld\n", (*stack_b)->content);
-		// printf("targ >> %d\n", cheapnode->tar_index);
+	
 		pa(stack_a, stack_b);
-	// printf("---------------------\n");
 	}
+	// int index = minindex(*stack_a);
+	
+	while (minindex(*stack_a) > 0 && minindex(*stack_a) <= ft_lstsize(*stack_a) / 2)
+		ra(stack_a);
+	while (minindex(*stack_a) > 0 && minindex(*stack_a) > ft_lstsize(*stack_a) / 2)
+		rra(stack_a);
+
 }
 
