@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
-SRC = push_swap.c	check_errors.c		moves.c		minsort.c
+SRC = push_swap.c	check_errors.c		moves.c		minsort.c	retour.c
 LIBFT_DIR = ./libft
 OBJ = $(SRC:.c=.o)
 

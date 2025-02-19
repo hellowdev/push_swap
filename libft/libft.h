@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:51:36 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/15 23:42:45 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/19 13:23:16 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_list
 {
 	long			content;
-	int				targetb;
+	int				tar_index;
 	int				position;
 	int				moves;
 	struct s_list	*next;

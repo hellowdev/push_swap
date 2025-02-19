@@ -27,10 +27,17 @@ void	rrr(t_list **stack_a, t_list **stack_b);
 
 void sort2nb(t_list *stack_a);
 void sort3nb(t_list **stack_a);
-void sort4nb(t_list **stack_a, t_list **stack_b);
-void sort5nb(t_list **stack_a, t_list **stack_b);
-void	minisort(t_list **stack_a, t_list **stack_b);
+void	minisort(t_list **stack_a);
 int minindex(t_list *stack_a);
 int	checksorting(t_list *stack_a);
+
+// B to A //
+int     target_a(t_list *stack_a, t_list *stack_b);
+void	init_targ(t_list *stack_a, t_list *stack_b);
+void	sort_b_a(t_list **stack_a, t_list **stack_b);
+t_list	*cheap_move(t_list *stack_a, t_list *stack_b);
+void    first_move(t_list **stack_a, t_list **stack_b, t_list *cheapnode);
+void    sec_move(t_list **stack_a, t_list **stack_b, t_list *cheapnode);
+
 
 #endif

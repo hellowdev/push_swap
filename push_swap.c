@@ -6,47 +6,13 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:14:30 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/18 21:07:50 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:14:37 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	checksorting(t_list *stack_a)
-{
 
-	while (stack_a)
-	{
-		if (stack_a->next && stack_a->content > stack_a->next->content)
-			return (0);
-		stack_a = stack_a->next;
-	}
-	return (1);
-}
-
-int minindex(t_list *stack_a)
-{
-	int j;
-	int holder;
-	t_list *head;
-	int i;
-	
-	head = stack_a->next;
-	holder = (stack_a->content);
-	j = 0;
-	i = 0;
-	while (head)
-	{
-		if (holder > head->content)
-		{
-			j = i + 1;
-			holder = head->content;
-		}
-		i++;
-		head = head->next;
-	}
-	return (j);
-}
 int ft_target(t_list *stack_a, t_list *stack_b)
 {
 	int holder;
@@ -71,8 +37,7 @@ int ft_target(t_list *stack_a, t_list *stack_b)
 		stack_b = stack_b->next;
 		i++;
 	}
-	
-	return (stack_a->targetb = j);
+	return (stack_a->tar_index = j);
 }
 
 void	init_tar_pos(t_list *stack_a, t_list *stack_b)
@@ -101,7 +66,7 @@ int	moves_b(t_list *stack_a, t_list *lst)
 	i = 0;
 
 	half = ft_lstsize(lst) / 2;
-	i = stack_a->targetb;
+	i = stack_a->tar_index;
 	
 	if (i <= half)
 		x = i;
@@ -118,7 +83,7 @@ int	moves_a(t_list *stack_a, t_list *lst)
 	x = 0;
 	i = 0;
 
-	half = ft_lstsize(lst) / 2;
+	half = ft_lstsize(stack_a) / 2;
 	i = stack_a->position;
 	
 	if (i <= half)
@@ -140,7 +105,7 @@ void	totale_move(t_list *stack_a, t_list *stack_b)
 	
 	while (stack_a)
 	{
-		if ((stack_a->position <= halfa && stack_a->targetb <= halfb) || (stack_a->position > halfa && stack_a->targetb > halfb))
+		if ((stack_a->position <= halfa && stack_a->tar_index <= halfb) || (stack_a->position > halfa && stack_a->tar_index > halfb))
 		{
 			if (moves_a(stack_a, lst) > moves_b(stack_a, stack_b))
 				stack_a->moves = moves_a(stack_a, lst);
@@ -149,7 +114,8 @@ void	totale_move(t_list *stack_a, t_list *stack_b)
 		}
 		else
 			stack_a->moves = moves_a(stack_a, lst) + moves_b(stack_a, stack_b);
-			
+		
+		// printf("stackB moves >> %d\n", stack_a->moves);
 		stack_a = stack_a->next;
 	}
 }
@@ -164,91 +130,93 @@ t_list	*cheap_move(t_list *stack_a, t_list *stack_b)
 	
 	while (stack_a)
 	{
+		
 		if (stack_a->next && holder->moves > stack_a->next->moves)
 		{
 			holder = stack_a->next;
 		}
+		// printf("st >> %ld\n", holder->content);
 		stack_a = stack_a->next;
 	}
+	// printf("cheap content >>>>>>>>>>>>>>>>> %ld\n", holder->content);
+	// printf("cheap moves >>>>>>>>>>>>>>>>> %d\n", holder->moves);
 	return (holder);
 }
-// int	checker(t_list *stack_a, t_list *stach_b)
-// {
-// 	int x;
-// 	int y;
 
-// 	while (stack_a)
-// 	{
-// 		t_list *cheapnode = cheap_move(*stack_a, *stack_b);
-		
-// 	}
-	
-// }
-
-void best_move(t_list **stack_a, t_list **stack_b)
+void first_move(t_list **stack_a, t_list **stack_b, t_list *cheapnode)
 {	
-	pb(stack_a, stack_b);
-	pb(stack_a, stack_b);
-	
-    while ((*stack_a) && ft_lstsize(*stack_a) != 3)
-    {
-		init_tar_pos(*stack_a, *stack_b);
 		
-	 	int size_a = ft_lstsize(*stack_a);
-        int size_b = ft_lstsize(*stack_b);
-		t_list *cheapnode = cheap_move(*stack_a, *stack_b);
-		
-		if (cheapnode->position <= size_a / 2 && cheapnode->targetb <= size_b / 2 && (cheapnode->position != 0 && cheapnode->targetb != 0))
-			while (cheapnode->position > 0 && cheapnode->targetb > 0) // while (checker(t_list *stack_a, t_list *stach_b) == 1)
+		if (cheapnode->position <= ft_lstsize(*stack_a) / 2 && cheapnode->tar_index <= ft_lstsize(*stack_b) / 2)
+		{
+			while (cheapnode->position > 0 && cheapnode->tar_index > 0) // while (checker(t_list *stack_a, t_list *stach_b) == 1)
 			{
 				rr(stack_a, stack_b);
 				cheapnode->position--;
-				cheapnode->targetb--;
+				cheapnode->tar_index--;
 			}
-		else if(cheapnode->position > size_a / 2 && cheapnode->targetb > size_b / 2)
-			while ((cheapnode->position < size_a && cheapnode->targetb < size_b))
+		}
+		else if (cheapnode->position > ft_lstsize(*stack_a) / 2 && cheapnode->tar_index > ft_lstsize(*stack_b) / 2)
+			while ((cheapnode->position < ft_lstsize(*stack_a) && cheapnode->tar_index < ft_lstsize(*stack_b)))
 			{
 				rrr(stack_a, stack_b);
 				cheapnode->position++;
-				cheapnode->targetb++;
+				cheapnode->tar_index++;
 			}
-			while (cheapnode->position <= size_a / 2 && cheapnode->position > 0)
-			{
-				ra(stack_a);
-				cheapnode->position--;
-			}
-				
-			while (cheapnode->position > size_a / 2 && cheapnode->position < size_a)
-			{
-				rra(stack_a);
-				cheapnode->position++;
-			}
-			while (cheapnode->targetb <= size_b / 2 && cheapnode->targetb > 0)
-			{
-				rb(stack_b);
-				cheapnode->targetb--;
-			}
-			while (cheapnode->targetb > size_b / 2 && cheapnode->targetb < size_b)
-			{
-				rrb(stack_b);
-				cheapnode->targetb++;
-			}
-			pb(stack_a, stack_b);
+}
+void sec_move(t_list **stack_a, t_list **stack_b, t_list *cheapnode)
+{	
+			
+	while (cheapnode->position <= ft_lstsize(*stack_a) / 2 && cheapnode->position > 0)
+	{
+		ra(stack_a);
+		cheapnode->position--;
+	}			
+	while (cheapnode->position > ft_lstsize(*stack_a) / 2 && cheapnode->position < ft_lstsize(*stack_a))
+	{
+		rra(stack_a);
+		cheapnode->position++;
+	}
+	while (cheapnode->tar_index <= ft_lstsize(*stack_b) / 2 && cheapnode->tar_index > 0)
+	{
+		rb(stack_b);
+		cheapnode->tar_index--;
+	}
+	while (cheapnode->tar_index > ft_lstsize(*stack_b) / 2 && cheapnode->tar_index < ft_lstsize(*stack_b))
+	{
+		rrb(stack_b);
+		cheapnode->tar_index++;
 	}
 }
+
+void	sort_a_b(t_list **stack_a, t_list **stack_b)
+{
+	t_list *cheapnode;
+
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	
+	while ((*stack_a) && ft_lstsize(*stack_a) != 3)
+	{
+		init_tar_pos(*stack_a, *stack_b);
+		cheapnode = cheap_move(*stack_a, *stack_b);
+		
+		if ((cheapnode->position <= ft_lstsize(*stack_a) / 2 && cheapnode->tar_index <= ft_lstsize(*stack_b) / 2)\
+		|| (cheapnode->position > ft_lstsize(*stack_a) / 2 && cheapnode->tar_index > ft_lstsize(*stack_b) / 2))
+			first_move(stack_a, stack_b, cheapnode);
+		sec_move(stack_a, stack_b, cheapnode);
+		
+		pb(stack_a, stack_b);
+	}
+	sort3nb(stack_a);
+}
+
+
 
 int main(int ac, char *av[])
 {
 	int i;
 	t_list *stack_a;
 	t_list *stack_b = NULL;
-	
-	// stack_b = ft_lstnew(34);
-	// stack_b->next = ft_lstnew(10);
-	// stack_b->next->next = ft_lstnew(15);
-	// stack_b->next->next->next = ft_lstnew(20);
-	// stack_b->next->next->next->next = ft_lstnew(40);
-	// stack_b->next->next = ft_lstnew(5);
 
 	stack_a = NULL;
 	i = 0;
@@ -260,16 +228,12 @@ int main(int ac, char *av[])
 			retatoi(av[i], &stack_a);
 	if (checkdb(stack_a) == 1)
 		return (write(2, "Error\n", 6), 0);
+
+		
+	sort_a_b(&stack_a, &stack_b);
 	
-	best_move(&stack_a, &stack_b);
-	
-	// while (stack_b)
-	// {
-	// 	// printf("MOVES A >> %d\n", moves_a(stack_a, tst));
-	// 	printf("stack_b >> %ld\n", stack_b->content);
-	// 	// printf("moves B >> %d\n", moves_b(stack_a, stack_b));
-	// 	stack_b = stack_b->next;
-	// }
+	sort_b_a(&stack_a, &stack_b);
+
 	
 }
 
