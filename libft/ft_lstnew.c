@@ -11,3 +11,5 @@ t_list	*ft_lstnew(long	content)
 	list->next = NULL;
 	return (list);
 }
+
+

@@ -1,25 +1,25 @@
 CC = cc
+
 CFLAGS = -Wall -Wextra -Werror
+
 NAME = push_swap
-SRC = push_swap.c	check_errors.c		moves.c		minsort.c	retour.c
-LIBFT_DIR = ./libft
+SRC = ./libft/ft_calloc.c	./libft/ft_atoi.c	./libft/ft_isdigit.c    ./libft/ft_split.c		./libft/ft_memcpy.c \
+./libft/ft_lstadd_back_bonus.c	./libft/ft_lstnew.c		./libft/ft_lstlast_bonus.c 	./libft/ft_lstadd_front_bonus.c		./libft/ft_lstsize.c \
+minsort.c	moves.c	check_errors.c	push_swap.c		retour.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	make -C ./libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT_DIR)/libft.a
+	$(CC) $(CFLAGS) $(OBJ) -o $@
 
-%.o : %.c push_swap.h
+%.o : %.c push_swap.h ./libft/libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	rm -rf $(OBJ)
-	make -C ./libft clean
 
 fclean : clean
 	rm -rf $(NAME)
-	make -C ./libft fclean
 
 re : fclean all

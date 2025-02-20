@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:14:30 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/19 22:29:19 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:13:39 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	moves_b(t_list *stack_a, t_list *lst)
 		x = i;
 	else
 		x = ft_lstsize(lst) - i;
-	// printf("totMOVe B >> %d\n", x);
 	return (x);
 }
 int	moves_a(t_list *stack_a, t_list *lst)
@@ -135,11 +134,8 @@ t_list	*cheap_move(t_list *stack_a, t_list *stack_b)
 		{
 			holder = stack_a->next;
 		}
-		// printf("st >> %ld\n", holder->content);
 		stack_a = stack_a->next;
 	}
-	// printf("cheap content >>>>>>>>>>>>>>>>> %ld\n", holder->content);
-	// printf("cheap moves >>>>>>>>>>>>>>>>> %d\n", holder->moves);
 	return (holder);
 }
 
@@ -209,8 +205,14 @@ void	sort_a_b(t_list **stack_a, t_list **stack_b)
 	}
 	sort3nb(stack_a);
 }
-
-
+void	frite(t_list *stack_a)
+{
+	free(stack_a);
+}
+// void ll()
+// {
+// 	system("leaks push_swap");
+// }
 
 int main(int ac, char *av[])
 {
@@ -221,18 +223,22 @@ int main(int ac, char *av[])
 	stack_a = NULL;
 	i = 0;
 	
+	// atexit(ll);
 	while (++i < ac)
 		if (checkdig(av[i]) == 1 || checksp(av[i]) == 1)
-			return (write(2, "Error\n", 6), 0);
+			return (write(2, "Error\n", 6), 1);
 		else
 			retatoi(av[i], &stack_a);
 	if (checkdb(stack_a) == 1)
-		return (write(2, "Error\n", 6), 0);
-	sort_a_b(&stack_a, &stack_b);
-	sort_b_a(&stack_a, &stack_b);
-
-	system("a.out");
+		return (write(2, "Error\n", 6), 1);
 	
+	minisort(&stack_a, &stack_b);
+	while (stack_a)
+	{
+		frite(stack_a);
+		stack_a = stack_a->next;
+	}
+	system("leaks push_swap");
 }
 
 

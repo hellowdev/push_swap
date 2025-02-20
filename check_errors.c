@@ -48,9 +48,7 @@ int checkdig(char *str)
 		if (((ft_isdigit(str[i]) == 0 && str[i] != 32 && str[i] != '-' && str[i] != '+')\
 		|| (str[i] == '+' && ft_isdigit(str[i + 1]) == 0) || (str[i] == '-' && ft_isdigit(str[i + 1]) == 0))\
 		|| (ft_isdigit(str[i]) == 1 && str[i + 1] == '-' ) || (ft_isdigit(str[i]) == 1 && str[i + 1] == '+' ))
-		{
 				return (1);
-		}
 	i++;
 	}
 	return (0);
@@ -72,4 +70,5 @@ void retatoi(char *p, t_list **stack_a)
 		ft_lstadd_back(stack_a, ft_lstnew(atoiret)); // NEED TO HANDLE NULL OF LSTNEW !!
 		i++;
 	}
+	free(b);
 }
