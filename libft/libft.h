@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:51:36 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/20 14:51:16 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/22 13:52:41 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ typedef struct s_list
 	int				moves;
 	struct s_list	*next;
 }		t_list;
-	
+
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(long	content);
+t_list	*ft_lstnew(long content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
