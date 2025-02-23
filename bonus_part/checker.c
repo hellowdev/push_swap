@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:47:50 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/23 15:12:46 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/23 15:23:22 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	checker(t_list **stack_a, t_list **stack_b)
 		else if (!mv(stack_a, stack_b, move))
 		{
 			write(2, "Error\n", 6);
-			exit(0);
+			exit(1);
 		}
 		free(move);
 	}
@@ -122,4 +122,5 @@ int	main(int ac, char *av[])
 	checker(&stack_a, &stack_b);
 	srt(stack_a, stack_b);
 	frite(stack_a);
+	frite(stack_b);
 }
