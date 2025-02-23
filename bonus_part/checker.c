@@ -6,13 +6,13 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:47:50 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/23 14:49:22 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/23 15:12:46 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "../push_swap.h"
-#include "get_next_line/get_next_line.h"
+#include "get_next_linee/get_next_line.h"
 
 void	retatoi(char *p, t_list **stack_a)
 {
