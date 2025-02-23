@@ -20,10 +20,15 @@ $(NAME) : $(OBJ)
 %.o : %.c push_swap.h ./libft/libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
+bonus :
+	Make -C	bonus_part
+
 clean :
 	rm -rf $(OBJ)
+	Make -C	bonus_part clean
 
 fclean : clean
 	rm -rf $(NAME)
+	Make -C	bonus_part fclean
 
 re : fclean all

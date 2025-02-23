@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/23 14:52:53 by ychedmi           #+#    #+#             */
+/*   Updated: 2025/02/23 14:53:51 by ychedmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CHECKER_H
+# define CHECKER_H
+
+# include "../libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+
+int		checksorting(t_list *stack_a);
+int		ft_strcmp(char *s1, char *s2);
+int		mv(t_list **stack_a, t_list **stack_b, char *move);
+void	srt(t_list *stack_a, t_list *stack_b);
+void	ra(t_list **stack_a);
+void	rb(t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
+void	sa(t_list *stack_a);
+void	sb(t_list *stack_b);
+void	ss(t_list *stack_a, t_list *stack_b);
+void	pa(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_a, t_list **stack_b);
+void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
+
+#endif
