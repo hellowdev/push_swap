@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:28:19 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/22 12:35:27 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/25 12:51:55 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 int	checkdb(t_list *look)
 {
-	t_list	*look2;
-	t_list	*look3;
+	t_list	*head;
 
-	look3 = look;
-	look2 = look3->next;
+	head = look;
 	if (look->content > INT_MAX || look->content < INT_MIN)
 		return (1);
-	while (look3)
+	while (head)
 	{
-		look2 = look3->next;
-		while (look2)
+		look = head->next;
+		while (look)
 		{
-			if ((look3->content == look2->content) || (look3->content > INT_MAX \
-			|| look3->content < INT_MIN))
+			if ((head->content == look->content) || (look->content > INT_MAX \
+			|| look->content < INT_MIN))
 				return (1);
-			look2 = look2->next;
+			look = look->next;
 		}
-		look3 = look3->next;
+		head = head->next;
 	}
 	return (0);
 }

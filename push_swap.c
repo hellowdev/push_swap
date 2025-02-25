@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:14:30 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/23 15:22:19 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/25 12:25:19 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	retatoi(char *p, t_list **stack_a)
 	while (b[i])
 	{
 		new = ft_lstnew(ft_atoi(b[i]));
-		ft_lstadd_back(stack_a, new);
 		if (!new)
 		{
 			frite(*stack_a);
 			return ;
 		}
+		ft_lstadd_back(stack_a, new);
 		i++;
 	}
 	i = 0;

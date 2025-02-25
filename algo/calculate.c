@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:13:24 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/22 13:17:48 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:50:49 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_target(t_list *stack_a, t_list *stack_b)
 		if ((holder > result && result > 0) || (holder < 0 && result > 0) \
 		|| (holder < 0 && result < 0 && holder > result))
 		{
-			holder = ((stack_a->content) - (stack_b->content));
+			holder = result;
 			j = i + 1;
 		}
 		stack_b = stack_b->next;
@@ -57,7 +57,7 @@ void	init_tar_pos(t_list *stack_a, t_list *stack_b)
 	}
 }
 
-int	moves_b(t_list *stack_a, t_list *lst)
+int	moves_b(t_list *stack_a, t_list *stack_b)
 {
 	int	i;
 	int	half;
@@ -65,12 +65,12 @@ int	moves_b(t_list *stack_a, t_list *lst)
 
 	x = 0;
 	i = 0;
-	half = ft_lstsize(lst) / 2;
+	half = ft_lstsize(stack_b) / 2;
 	i = stack_a->tar_index;
 	if (i <= half)
 		x = i;
 	else
-		x = ft_lstsize(lst) - i;
+		x = ft_lstsize(stack_b) - i;
 	return (x);
 }
 
@@ -82,7 +82,7 @@ int	moves_a(t_list *stack_a, t_list *lst)
 
 	x = 0;
 	i = 0;
-	half = ft_lstsize(stack_a) / 2;
+	half = ft_lstsize(lst) / 2;
 	i = stack_a->position;
 	if (i <= half)
 		x = i;
