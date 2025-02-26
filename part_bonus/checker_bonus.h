@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:52:53 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/23 14:53:51 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:32:23 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
-# include "../libft/libft.h"
+# include "./utils_bonus/libft_bonus.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -33,5 +33,8 @@ void	pb(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
+int		checkdb(t_list *look);
+int		checksp(char *str);
+int		checkdig(char *str);
 
 #endif

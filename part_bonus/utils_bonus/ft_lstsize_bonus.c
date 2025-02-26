@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 13:47:47 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/22 13:47:49 by ychedmi          ###   ########.fr       */
+/*   Created: 2025/02/22 13:49:02 by ychedmi           #+#    #+#             */
+/*   Updated: 2025/02/26 17:48:34 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_bonus.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	while (lst && lst->next)
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
 		lst = lst->next;
-	return (lst);
+		i++;
+	}
+	return (i);
 }

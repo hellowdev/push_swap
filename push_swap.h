@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:44:26 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/22 13:06:57 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 20:45:20 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 //----------CHECK ERRORS---------//
 int		checkdig(char *str);
 int		checksp(char *str);
-void	retatoi(char *p, t_list **stack_a);
 int		checkdb(t_list *look);
 //------MOVES FUNCTIONS -----------//
 void	sa(t_list *head);

@@ -6,13 +6,13 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:14:30 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/25 12:25:19 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 20:41:57 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	retatoi(char *p, t_list **stack_a)
+int	retatoi(char *p, t_list **stack_a)
 {
 	char	**b;
 	int		i;
@@ -24,10 +24,9 @@ void	retatoi(char *p, t_list **stack_a)
 	{
 		new = ft_lstnew(ft_atoi(b[i]));
 		if (!new)
-		{
-			frite(*stack_a);
-			return ;
-		}
+			return (frite(*stack_a), 0);
+		if (new->content > INT_MAX || new->content < INT_MIN)
+			return (frite(*stack_a), 1);
 		ft_lstadd_back(stack_a, new);
 		i++;
 	}
@@ -38,6 +37,7 @@ void	retatoi(char *p, t_list **stack_a)
 		i++;
 	}
 	free(b);
+	return (0);
 }
 
 void	sort(t_list **stack_a, t_list **stack_b)
@@ -66,6 +66,7 @@ void	frite(t_list *stack_a)
 int	main(int ac, char *av[])
 {
 	int		i;
+	int		r;
 	t_list	*stack_a;
 	t_list	*stack_b;
 
@@ -77,7 +78,9 @@ int	main(int ac, char *av[])
 		if (checkdig(av[i]) == 1 || checksp(av[i]) == 1)
 			return (frite(stack_a), write(2, "Error\n", 6), 1);
 		else
-			retatoi(av[i], &stack_a);
+			r = retatoi(av[i], &stack_a);
+		if (r == 1)
+			return (1);
 	}
 	if (!stack_a)
 		return (0);

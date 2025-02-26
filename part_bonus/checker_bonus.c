@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:47:50 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/25 18:38:11 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 20:43:39 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
-#include "../push_swap.h"
-#include "get_next_linee/get_next_line.h"
+#include "checker_bonus.h"
+#include "get_next_line_bonus/get_next_line_bonus.h"
 
-void	retatoi(char *p, t_list **stack_a)
+void	frite(t_list *stack_a)
+{
+	while (stack_a)
+	{
+		free(stack_a);
+		stack_a = stack_a->next;
+	}
+}
+
+int	retatoi(char *p, t_list **stack_a)
 {
 	char	**b;
 	int		i;
@@ -25,12 +33,11 @@ void	retatoi(char *p, t_list **stack_a)
 	while (b[i])
 	{
 		new = ft_lstnew(ft_atoi(b[i]));
-		ft_lstadd_back(stack_a, new);
 		if (!new)
-		{
-			frite(*stack_a);
-			return ;
-		}
+			return (frite(*stack_a), 0);
+		if (new->content > INT_MAX || new->content < INT_MIN)
+			return (frite(*stack_a), 1);
+		ft_lstadd_back(stack_a, new);
 		i++;
 	}
 	i = 0;
@@ -40,15 +47,7 @@ void	retatoi(char *p, t_list **stack_a)
 		i++;
 	}
 	free(b);
-}
-
-void	frite(t_list *stack_a)
-{
-	while (stack_a)
-	{
-		free(stack_a);
-		stack_a = stack_a->next;
-	}
+	return (0);
 }
 
 int	mv(t_list **stack_a, t_list **stack_b, char *move)
@@ -102,6 +101,7 @@ void	checker(t_list **stack_a, t_list **stack_b)
 int	main(int ac, char *av[])
 {
 	int		i;
+	int		r;
 	t_list	*stack_a;
 	t_list	*stack_b;
 
@@ -113,7 +113,9 @@ int	main(int ac, char *av[])
 		if (checkdig(av[i]) == 1 || checksp(av[i]) == 1)
 			return (frite(stack_a), write(2, "Error\n", 6), 1);
 		else
-			retatoi(av[i], &stack_a);
+			r = retatoi(av[i], &stack_a);
+		if (r == 1)
+			return (1);
 	}
 	if (!stack_a)
 		return (0);

@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   check_errors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 12:28:19 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/26 20:07:19 by ychedmi          ###   ########.fr       */
+/*   Created: 2025/02/26 18:31:44 by ychedmi           #+#    #+#             */
+/*   Updated: 2025/02/26 19:58:52 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 int	checkdb(t_list *look)
 {
 	t_list	*head;
 
 	head = look;
+
+	if (look->content > INT_MAX || look->content < INT_MIN)
+		return (1);
 	while (head)
 	{
 		look = head->next;
 		while (look)
 		{
-			if (head->content == look->content)
+			if ((head->content == look->content) || (look->content > INT_MAX \
+			|| look->content < INT_MIN))
 				return (1);
 			look = look->next;
 		}
