@@ -6,11 +6,24 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:14:30 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/26 20:41:57 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 22:03:46 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	freesp(char **b)
+{
+	int	i;
+
+	i = 0;
+	while (b[i])
+	{
+		free(b[i]);
+		i++;
+	}
+	free(b);
+}
 
 int	retatoi(char *p, t_list **stack_a)
 {
@@ -26,17 +39,11 @@ int	retatoi(char *p, t_list **stack_a)
 		if (!new)
 			return (frite(*stack_a), 0);
 		if (new->content > INT_MAX || new->content < INT_MIN)
-			return (frite(*stack_a), 1);
+			return (frite(*stack_a), freesp(b), free(new), 1);
 		ft_lstadd_back(stack_a, new);
 		i++;
 	}
-	i = 0;
-	while (b[i])
-	{
-		free(b[i]);
-		i++;
-	}
-	free(b);
+	freesp(b);
 	return (0);
 }
 

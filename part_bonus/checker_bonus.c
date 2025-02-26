@@ -6,20 +6,24 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:47:50 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/26 20:43:39 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 22:46:14 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 #include "get_next_line_bonus/get_next_line_bonus.h"
 
-void	frite(t_list *stack_a)
+void	freesp(char **b)
 {
-	while (stack_a)
+	int	i;
+
+	i = 0;
+	while (b[i])
 	{
-		free(stack_a);
-		stack_a = stack_a->next;
+		free(b[i]);
+		i++;
 	}
+	free(b);
 }
 
 int	retatoi(char *p, t_list **stack_a)
@@ -36,17 +40,11 @@ int	retatoi(char *p, t_list **stack_a)
 		if (!new)
 			return (frite(*stack_a), 0);
 		if (new->content > INT_MAX || new->content < INT_MIN)
-			return (frite(*stack_a), 1);
+			return (frite(*stack_a), freesp(b), free(new), 1);
 		ft_lstadd_back(stack_a, new);
 		i++;
 	}
-	i = 0;
-	while (b[i])
-	{
-		free(b[i]);
-		i++;
-	}
-	free(b);
+	freesp(b);
 	return (0);
 }
 
@@ -92,6 +90,10 @@ void	checker(t_list **stack_a, t_list **stack_b)
 		else if (!mv(stack_a, stack_b, move))
 		{
 			write(2, "Error\n", 6);
+			frite(*stack_a);
+			frite(*stack_b);
+			free(move);
+			get_next_line(-1);
 			exit(1);
 		}
 		free(move);

@@ -6,11 +6,20 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:57:09 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/26 17:16:25 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/02/26 22:01:01 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
+
+void	frite(t_list *stack_a)
+{
+	while (stack_a)
+	{
+		free(stack_a);
+		stack_a = stack_a->next;
+	}
+}
 
 int	checksorting(t_list *stack_a)
 {
