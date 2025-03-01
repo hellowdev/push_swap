@@ -6,7 +6,7 @@
 /*   By: ychedmi <ychedmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 14:47:50 by ychedmi           #+#    #+#             */
-/*   Updated: 2025/02/26 22:46:14 by ychedmi          ###   ########.fr       */
+/*   Updated: 2025/03/01 20:36:02 by ychedmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	mv(t_list **stack_a, t_list **stack_b, char *move)
 	if (ft_strcmp(move, "sa\n") == 0)
 		sa(*stack_a);
 	else if (ft_strcmp(move, "sb\n") == 0)
-		sb(*stack_a);
+		sb(*stack_b);
 	else if (ft_strcmp(move, "ss\n") == 0)
 		ss(*stack_a, *stack_b);
 	else if (ft_strcmp(move, "pa\n") == 0)
